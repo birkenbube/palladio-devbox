@@ -22,7 +22,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 # Download and extract Palladio into /opt/palladio
 RUN mkdir -p /opt/palladio \
-    && wget -O /tmp/palladio.zip "https://updatesite.palladio-simulator.com/palladio-bench-product/releases/5.2.1/Palladio.linux.gtk.x86_64.zip" \
+    && wget -O /tmp/palladio.zip "https://updatesite.palladio-simulator.com/palladio-bench-product/releases/latest/Palladio.linux.gtk.x86_64.zip" \
     && unzip /tmp/palladio.zip -d /opt/palladio \
     && rm /tmp/palladio.zip \
     && chown -R 1000:1000 /opt/palladio
