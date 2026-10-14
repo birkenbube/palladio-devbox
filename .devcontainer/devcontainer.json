@@ -1,0 +1,29 @@
+{
+  "name": "Palladio Simulator Devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "palladio-devbox",
+  "containerEnv": {
+    "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "GDK_BACKEND": "wayland"
+  },
+  "runArgs": [
+    "--net=host",
+    "--security-opt",
+    "label=type:container_runtime_t",
+    "--device",
+    "/dev/dri"
+  ],
+  "mounts": [
+    "source=/run/user/1000,target=/run/user/1000,type=bind,consistency=cached"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack"
+      ]
+    }
+  }
+}
