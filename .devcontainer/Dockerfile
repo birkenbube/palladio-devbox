@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/java
+FROM mcr.microsoft.com/devcontainers/java:21-trixie
 
 # Rename default 'vscode' user (UID 1000) to 'palladio-devbox'
 RUN usermod -l palladio-devbox -d /home/palladio-devbox -m vscode \
