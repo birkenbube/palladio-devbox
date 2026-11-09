@@ -5,6 +5,7 @@
   },
   "remoteUser": "palladio-devbox",
   "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}", // X11 display variable
     "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
     "XDG_RUNTIME_DIR": "/run/user/1000",
     "GDK_BACKEND": "wayland"
@@ -17,7 +18,10 @@
     "/dev/dri"
   ],
   "mounts": [
-    "source=/run/user/1000,target=/run/user/1000,type=bind,consistency=cached"
+    // Wayland socket
+    "source=/run/user/1000,target=/run/user/1000,type=bind,consistency=cached",
+    // X11 socket required for specific screens in Palladio, such as the Assembly Diagram View
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind"
   ],
   "customizations": {
     "vscode": {

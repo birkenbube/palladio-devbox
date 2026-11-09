@@ -6,9 +6,29 @@ This repository provides a pre-configured **VS Code Devcontainer** for running t
 
 - **VS Code** with the **Dev Containers** extension (`ms-vscode-remote.remote-containers`) or any other IDE supporting devcontainers.
 - **Podman** or **Docker** installed
-- Compatibility with Wayland
+- Compatibility with Wayland (might also work with X11...)
 
 ## How to use
+
+>[!IMPORTANT]
+>
+> Some view components of Palladio, such as the Assembly View, seem to rely on X11 since they use that Java AWT/Batik. Since xhost by default blocks access to the X server, you will encounter errors like this:
+>
+> ```text
+> java.awt.AWTError: Can't connect to X11 window server using ':0' as the value of the DISPLAY variable.
+> ```
+>
+> On Linux Wayland hosts, you need to authorize the current user for the XWayland fallback before launching Palladio:
+>
+> ```bash
+> xhost +SI:localuser:$(id -un)
+> ```
+>
+> After closing the devcontainer, it is best to revoke that temporary permission:
+>
+> ```bash
+> xhost -SI:localuser:$(id -un)
+> ```
 
 1. Add the [.devcontainer](.devcontainer) folder and its contents to a project where **palladio-devbox** should be available.
 2. Considering you are using VSCode, reopen the project within the devcontainer.
